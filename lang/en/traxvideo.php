@@ -34,6 +34,13 @@ $string['page-mod-traxvideo-view'] = 'Trax Video main page';
 
 // Permissions.
 $string['traxvideo:addinstance'] = 'Add a new Trax Video';
+$string['traxvideo:view'] = 'View Trax Video';
+
+// Mod Form.
+$string['poster'] = 'Poster (PNG,JPG)';
+$string['poster_help'] = 'Enter the URL of a video poster which will be displayed before the video is loaded.';
+$string['sourcemp4'] = 'Video (MP4)';
+$string['sourcemp4_help'] = 'Enter the URL of the video with an mp4 extension.';
 
 // Privacy metadata.
 /*

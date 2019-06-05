@@ -25,6 +25,23 @@
 defined('MOODLE_INTERNAL') || die();
 
 function xmldb_traxvideo_upgrade($oldversion) {
-	return true;
+    global $DB;
+
+    $dbman = $DB->get_manager();
+
+    if ($oldversion < 2018050801) {
+
+        // Add poster and sourcemp4 column.
+        $table = new xmldb_table('traxvideo');
+
+        $field = new xmldb_field('poster', XMLDB_TYPE_CHAR, '255', null, null, null, null, 'introformat');
+        $dbman->add_field($table, $field);
+
+        $field = new xmldb_field('sourcemp4', XMLDB_TYPE_CHAR, '255', null, XMLDB_NOTNULL, null, null, 'poster');
+        $dbman->add_field($table, $field);
+
+        // Savepoint.
+        upgrade_plugin_savepoint(true, 2018050801, 'mod', 'traxvideo');
+    }
 }
 

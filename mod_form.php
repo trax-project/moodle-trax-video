@@ -29,27 +29,42 @@ require_once($CFG->dirroot.'/course/moodleform_mod.php');
 class mod_traxvideo_mod_form extends moodleform_mod {
 
     function definition() {
-		$config = get_config('traxvideo');
-		$mform = $this->_form;
+        $config = get_config('traxvideo');
+        $mform = $this->_form;
 
-		// General settings.
-		$mform->addElement('header', 'general', get_string('general', 'form'));
+        // General settings.
+        $mform->addElement('header', 'general', get_string('general', 'form'));
 
-		// Name.
-		$mform->addElement('text', 'name', get_string('name'));
-		$mform->setType('name', PARAM_TEXT);
-		$mform->addRule('name', null, 'required', null, 'client');
+        // Name.
+        $mform->addElement('text', 'name', get_string('name'));
+        $mform->setType('name', PARAM_TEXT);
+        $mform->addRule('name', null, 'required', null, 'client');
         $mform->addRule('name', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
 
-		// Summary.
+        // Summary.
         $this->standard_intro_elements();
 
-		// Common settings.
-		$this->standard_coursemodule_elements();
+        // Poster.
+        $mform->addElement('text', 'poster', get_string('poster', 'traxvideo'));
+        $mform->setType('poster', PARAM_TEXT);
+        $mform->addRule('poster', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
+        $mform->addHelpButton('poster', 'poster', 'traxvideo');
+        $mform->setDefault('poster', 'http://vjs.zencdn.net/v/oceans.png');
 
-		// Submit buttons.
-		$this->add_action_buttons();
-	}
+        // Poster.
+        $mform->addElement('text', 'sourcemp4', get_string('sourcemp4', 'traxvideo'));
+        $mform->setType('sourcemp4', PARAM_TEXT);
+        $mform->addRule('sourcemp4', null, 'required', null, 'client');
+        $mform->addRule('sourcemp4', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
+        $mform->addHelpButton('sourcemp4', 'sourcemp4', 'traxvideo');
+        $mform->setDefault('sourcemp4', 'http://vjs.zencdn.net/v/oceans.mp4');
+
+        // Common settings.
+        $this->standard_coursemodule_elements();
+
+        // Submit buttons.
+        $this->add_action_buttons();
+    }
 
 }
 

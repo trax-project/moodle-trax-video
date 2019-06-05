@@ -25,6 +25,9 @@
 require_once('../../config.php');
 require_once($CFG->dirroot . '/mod/traxvideo/lib.php');
 
+use \logstore_trax\src\controller as trax_controller;
+
+
 // Params.
 $id = required_param('id', PARAM_INT); 
 
@@ -34,7 +37,7 @@ $course = $DB->get_record("course", array('id' => $cm->course), '*', MUST_EXIST)
 $activity = $DB->get_record("traxvideo", array('id' => $cm->instance), '*', MUST_EXIST);
 
 // Permissions.
-require_course_login($course, true, $cm);
+require_course_login($course, false, $cm);
 $context = context_module::instance($cm->id);
 require_capability('mod/traxvideo:view', $context);
 
@@ -42,7 +45,6 @@ require_capability('mod/traxvideo:view', $context);
 traxvideo_view($activity, $course, $cm, $context);
 
 // Page setup.
-require_login($course->id, false, $cm);
 $url = new moodle_url('/mod/traxvideo/view.php', array('id'=>$id));
 $PAGE->set_url($url);
 
@@ -62,17 +64,21 @@ echo $OUTPUT->header();
 echo $OUTPUT->heading($title);
 
 // Front data.
+$controller = new trax_controller();
+$parentactivity = $controller->activities->get('traxvideo', $activity->id, false);
+$activityid = $parentactivity['id'] . '/items/01';
+
 $front = (object)[
     'endpoint' => $CFG->wwwroot . '/admin/tool/log/store/trax/proxy/',
     'username' => '',
     'password' => '',
-    'actor' => '{"mbox": "mailto:videojs@video.profile.xapi"}',
+    'actor' => '{"mbox": "mailto:video@profile.xapi"}',
+    'activityid' => $activityid,
+    'activityname' => $title,
     'video' => [
-        'video/mp4' => 'http://vjs.zencdn.net/v/oceans.mp4',
-        'video/webm' => 'http://vjs.zencdn.net/v/oceans.webm',
-        'video/ogg' => 'http://vjs.zencdn.net/v/oceans.ogv',
+        'video/mp4' => $activity->sourcemp4,
     ],
-    'poster' => 'http://vjs.zencdn.net/v/oceans.png',
+    'poster' => $activity->poster,
 ];
 ?>
 
@@ -96,8 +102,9 @@ $front = (object)[
         };
         ADL.XAPIWrapper.changeConfig(conf);
     }
-    var activityTitle = 'xAPI Video';
-    var activityDesc = 'Video conforming with the xAPI video profile';
+    var activityId = "<?php echo $front->activityid ?>";
+    var activityTitle = "<?php echo $front->activityname ?>";
+    var activityDesc = '';
     ADL.XAPIVideoJS("xapi-videojs");
 
 </script>
