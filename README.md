@@ -6,8 +6,8 @@ and play them with an xAPI compliant video player.
 
 ## Installation
 
-1. Install and configure the last version of **Trax Logs** for Moodle 3.5: 
-https://github.com/trax-project/moodle-trax-logs.
+1. Install and configure the last version of 
+[Trax Logs](https://github.com/trax-project/moodle-trax-logs) for Moodle 3.5.
 
 2. Download the last version of [Trax Video](https://github.com/trax-project/moodle-trax-video/releases) 
 for Moodle 3.5.
@@ -32,28 +32,27 @@ which is is a reference implementation of the
 integrated with the VideoJS player.
 
 With this player, you can track video events such as:
-
 - Video started, paused, resumed, seeked, stopped.
 - Interactions with the video player like audio (un)mute or resolution change.
 - Video completion, time spent and viewed sections.
 
-The video player handles these events, build xAPI statements and send them an LRS.
+The video player build the related xAPI statements and send them an LRS.
 
 
 ## Security concerns
 
-**Trax Video** uses a secured communication protocol between the video player
+**Trax Video** implements a secured communication between the video player
 and the LRS, based on the following principles:
 
 - The video player does not communicate directly with the LRS, 
 but with an **LRS proxy** provided by the Trax Logs plugin.
-The Moodle authentication session is used to secure this communication,
-so the LRS credentials are not exposed here.
+The LRS credentials are not exposed here.
+The Moodle authentication session is used to secure the communication. 
 
-- The LRS proxy always forces the actor to match with the authenticated user,
-so a user can only request and post its own statements.
+- The LRS proxy always **forces the actor** to match with the authenticated user,
+so a user can only get and post its own statements.
 
-- The LRS proxy communicates with the LRS from server to server,
+- The LRS proxy communicates with the LRS **from server to server**,
 using the LRS credentials.
 
 
