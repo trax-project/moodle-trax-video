@@ -43,11 +43,7 @@ $string['sourcemp4'] = 'Video (MP4)';
 $string['sourcemp4_help'] = 'Enter the URL of the video with an mp4 extension.';
 
 // Privacy metadata.
-/*
-$string['privacy:metadata:scormlite_scoes_track'] = 'The tracked data of the Topaze activity';
-$string['privacy:metadata:userid'] = 'The ID of the user who accessed the Topaze activity';
-$string['privacy:metadata:attempt'] = 'The attempt number';
-$string['privacy:metadata:scoes_track:element'] = 'The name of the element to be tracked';
-$string['privacy:metadata:scoes_track:value'] = 'The value of the given element';
-$string['privacy:metadata:timemodified'] = 'The time when the tracked element was last modified';
-*/
+$string['privacy:metadata'] = 'This plugin does not store any personal data.
+    However, some events are sent to the Trax Logs plugin.
+    Refer to Trax Logs data privacy policy.';
+
