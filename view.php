@@ -82,8 +82,9 @@ $front = (object)[
 ];
 ?>
 
-<video id="xapi-videojs" class="video-js vjs-default-skin" controls preload="auto" width="640" height="264" 
-    poster="<?php echo $front->poster ?>" data-setup="{}">
+<video id="xapi-videojs" class="video-js vjs-default-skin" controls preload="auto" 
+    poster="<?php echo $front->poster ?>" data-setup="{}" 
+    style="width:100%; height:auto;">
     <?php 
     foreach ($front->video as $type => $source) {
         echo '<source src="' . $source . '" type="' . $type . '">';
