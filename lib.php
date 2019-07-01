@@ -93,6 +93,7 @@ function traxvideo_update_instance($data, $mform) {
 
     // Set data.
     $data->timemodified = time();
+    $data->id = $data->instance;
 
     // Record it.
     $DB->update_record('traxvideo', $data);
