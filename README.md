@@ -27,7 +27,7 @@ That's all. Now you can edit a course and add a **Trax Video** resource.
 ## How it works
 
 **Trax Video** uses the [xAPI VideoJS](https://github.com/jhaag75/xapi-videojs) player,
-which is is a reference implementation of the 
+which is a reference implementation of the 
 [xAPI Video Profile](https://liveaspankaj.gitbooks.io/xapi-video-profile/content/) 
 integrated with the VideoJS player.
 
