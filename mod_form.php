@@ -44,20 +44,20 @@ class mod_traxvideo_mod_form extends moodleform_mod {
         // Summary.
         $this->standard_intro_elements();
 
-        // Poster.
-        $mform->addElement('text', 'poster', get_string('poster', 'traxvideo'), ['size' => '100']);
-        $mform->setType('poster', PARAM_TEXT);
-        $mform->addRule('poster', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
-        $mform->addHelpButton('poster', 'poster', 'traxvideo');
-        $mform->setDefault('poster', 'http://vjs.zencdn.net/v/oceans.png');
-
-        // Poster.
+        // Video.
         $mform->addElement('text', 'sourcemp4', get_string('sourcemp4', 'traxvideo'), ['size' => '100']);
         $mform->setType('sourcemp4', PARAM_TEXT);
         $mform->addRule('sourcemp4', null, 'required', null, 'client');
         $mform->addRule('sourcemp4', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
         $mform->addHelpButton('sourcemp4', 'sourcemp4', 'traxvideo');
         $mform->setDefault('sourcemp4', 'http://vjs.zencdn.net/v/oceans.mp4');
+
+        // Poster.
+        $mform->addElement('text', 'poster', get_string('poster', 'traxvideo'), ['size' => '100']);
+        $mform->setType('poster', PARAM_TEXT);
+        $mform->addRule('poster', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
+        $mform->addHelpButton('poster', 'poster', 'traxvideo');
+        $mform->setDefault('poster', 'http://vjs.zencdn.net/v/oceans.png');
 
         // Common settings.
         $this->standard_coursemodule_elements();
