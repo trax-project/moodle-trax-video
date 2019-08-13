@@ -72,7 +72,7 @@ $front = (object)[
     'endpoint' => $CFG->wwwroot . '/admin/tool/log/store/trax/proxy/',
     'username' => '',
     'password' => '',
-    'actor' => '{"mbox": "mailto:mod_traxvideo@proxy.xapi"}',
+    'actor' => '{"mbox": "mailto:'.$activity->id.'@traxvideo.mod"}',
     'activityid' => $activityid,
     'activityname' => $title,
     'video' => [
@@ -82,15 +82,18 @@ $front = (object)[
 ];
 ?>
 
-<video id="xapi-videojs" class="video-js vjs-default-skin" controls preload="auto" 
-    poster="<?php echo $front->poster ?>" data-setup="{}" 
-    style="width:100%; height:auto;">
-    <?php 
-    foreach ($front->video as $type => $source) {
-        echo '<source src="' . $source . '" type="' . $type . '">';
-    }
-    ?>
-</video>
+<div class="wrapper">
+    <div class="videocontent">
+        <video id="xapi-videojs" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" 
+            poster="<?php echo $front->poster ?>" data-setup='{"fluid": true}'>
+            <?php 
+            foreach ($front->video as $type => $source) {
+                echo '<source src="' . $source . '" type="' . $type . '">';
+            }
+            ?>
+        </video>
+    </div>
+</div>
 
 <script type="text/javascript">
 
