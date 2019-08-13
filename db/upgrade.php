@@ -41,7 +41,9 @@ function xmldb_traxvideo_upgrade($oldversion) {
         $dbman->add_field($table, $field);
 
         // Savepoint.
-        upgrade_plugin_savepoint(true, 2018050801, 'mod', 'traxvideo');
+        upgrade_mod_savepoint(true, 2018050801, 'traxvideo');
     }
+
+    return true;
 }
 
