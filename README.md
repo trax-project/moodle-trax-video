@@ -36,7 +36,7 @@ With this player, you can track video events such as:
 - Interactions with the video player like audio (un)mute or resolution change.
 - Video completion, time spent and viewed sections.
 
-The video player build the related xAPI statements and send them an LRS.
+The video player build the related xAPI statements and send them to the server.
 
 
 ## Security concerns
@@ -45,7 +45,7 @@ The video player build the related xAPI statements and send them an LRS.
 and the LRS, based on the following principles:
 
 - The video player does not communicate directly with the LRS, 
-but with an **LRS proxy** provided by the Trax Logs plugin.
+but with an **LRS proxy** provided by the Moodle Trax Logs plugin.
 The LRS credentials are not exposed here.
 The Moodle authentication session is used to secure the communication. 
 
@@ -53,7 +53,23 @@ The Moodle authentication session is used to secure the communication.
 so a user can only get and post its own statements.
 
 - The LRS proxy communicates with the LRS **from server to server**,
-using the LRS credentials.
+using the LRS credentials stored in the Moodle Trax Logs plugin.
+
+
+## Synchronicity
+
+Trax Video sends the statements to the LRS proxy which sends them to the LRS immediately.
+So the **normal process is synchronous**.
+
+Additionally, the LRS proxy triggers a Moodle event each time it sends statements to the LRS.
+These events are stored in the Moodle standard logstore.
+
+When Trax Logs parses these logs, it ignores them and don't try to send the matching statements
+because the proxy already sent them to the LRS.
+
+However, you can force Trax Logs to resend these statements, playing with the **Resend live logs until** setting. By doing this, you can resend the Trax Video statements **asynchronously**.
+
+The may be usefull if you want to repopulate your LRS with the Moodle logs.
 
 
 ## Statements
