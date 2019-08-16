@@ -1,7 +1,6 @@
 # Trax Video for Moodle
 
-> This plugin let's you add video resources into your Moodle courses 
-and play them with an xAPI compliant video player.
+> This plugin lets you add xAPI videos into your Moodle courses .
 
 
 ## Installation
@@ -21,7 +20,7 @@ are located at the root of the `my-moodle-install-folder/mod/traxvideo` folder.
 
 5. Confirm the plugin installation and follow the configuration process.
 
-That's all. Now you can edit a course and add a **Trax Video** resource.
+That's all. Now you can edit a course and add a **Trax Video** activity.
 
 
 ## How it works

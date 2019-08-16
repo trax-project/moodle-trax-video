@@ -28,6 +28,6 @@ $plugin->version = 2018050803;
 $plugin->requires = 2018050800;
 $plugin->component = 'mod_traxvideo';
 
-$plugin->release = 'v0.1';
+$plugin->release = 'v0.3';
 $plugin->maturity = MATURITY_ALPHA;
 

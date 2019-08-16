@@ -33,7 +33,7 @@ defined('MOODLE_INTERNAL') || die();
 function traxvideo_supports($feature) {
     switch ($feature) {
         case FEATURE_MOD_ARCHETYPE:
-            return MOD_ARCHETYPE_RESOURCE;
+            return MOD_ARCHETYPE_OTHER;
         case FEATURE_GROUPS:
             return false;
         case FEATURE_GROUPINGS:
@@ -137,33 +137,3 @@ function traxvideo_get_extra_capabilities() {
 function traxvideo_reset_userdata($data) {
     return array();
 }
-
-/**
- * Mark the activity completed (if required) and trigger the course_module_viewed event.
- *
- * @param  stdClass $traxvideo  traxvideo object
- * @param  stdClass $course     course object
- * @param  stdClass $cm         course module object
- * @param  stdClass $context    context object
- * @since Moodle 3.0
- */
-function traxvideo_view($traxvideo, $course, $cm, $context) {
-
-    // Trigger course_module_viewed event.
-    $params = array(
-        'context' => $context,
-        'objectid' => $traxvideo->id
-    );
-
-    $event = \mod_traxvideo\event\course_module_viewed::create($params);
-    $event->add_record_snapshot('course_modules', $cm);
-    $event->add_record_snapshot('course', $course);
-    $event->add_record_snapshot('traxvideo', $traxvideo);
-    $event->trigger();
-
-    // Completion.
-    $completion = new completion_info($course);
-    $completion->set_module_viewed($cm);
-}
-
-

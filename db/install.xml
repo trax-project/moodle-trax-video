@@ -5,7 +5,7 @@
 >
     <TABLES>
     
-        <TABLE NAME="traxvideo" COMMENT="each record is one Trax Video resource">
+        <TABLE NAME="traxvideo" COMMENT="each record is one Trax Video activity">
             <FIELDS>
                 <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
                 <FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>

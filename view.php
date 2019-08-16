@@ -23,7 +23,7 @@
  */
 
 require_once('../../config.php');
-require_once($CFG->dirroot . '/mod/traxvideo/lib.php');
+require_once($CFG->dirroot . '/mod/traxvideo/locallib.php');
 
 use \logstore_trax\src\controller as trax_controller;
 
@@ -41,8 +41,8 @@ require_course_login($course, false, $cm);
 $context = context_module::instance($cm->id);
 require_capability('mod/traxvideo:view', $context);
 
-// Completion and trigger events.
-traxvideo_view($activity, $course, $cm, $context);
+// Events.
+traxvideo_tigger_module_event('course_module_viewed', $activity, $course, $cm, $context);
 
 // Page setup.
 $url = new moodle_url('/mod/traxvideo/view.php', array('id'=>$id));
@@ -66,7 +66,7 @@ echo $OUTPUT->heading($title);
 // Front data.
 $controller = new trax_controller();
 $parentactivity = $controller->activities->get('traxvideo', $activity->id, false);
-$activityid = $parentactivity['id'] . '/items/01';
+$activityid = $parentactivity['id'] . '/video';
 
 $front = (object)[
     'endpoint' => $CFG->wwwroot . '/admin/tool/log/store/trax/proxy/',

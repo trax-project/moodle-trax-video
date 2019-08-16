@@ -24,8 +24,7 @@
 
 // Plugin strings.
 $string['modulename'] = 'Trax Video';
-$string['modulename_help'] = "This plugin let's you add video activities in your Moodle courses
-    and play them with an xAPI video player.";
+$string['modulename_help'] = "This plugin let's you add xAPI videos into your Moodle courses.";
 $string['modulenameplural'] = 'Trax Videos';
 $string['pluginadministration'] = 'Trax Video administration';
 $string['pluginname'] = 'Trax Video';

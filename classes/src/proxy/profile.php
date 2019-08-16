@@ -17,7 +17,7 @@
 /**
  * Proxy video profile.
  *
- * @package    logstore_trax
+ * @package    mod_traxvideo
  * @copyright  2019 Sébastien Fraysse {@link http://fraysse.eu}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -31,7 +31,7 @@ use logstore_trax\src\proxy\profile as base_profile;
 /**
  * Proxy video profile.
  *
- * @package    logstore_trax
+ * @package    mod_traxvideo
  * @copyright  2019 Sébastien Fraysse {@link http://fraysse.eu}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -52,19 +52,7 @@ class profile extends base_profile {
 
         // Add parent activity.
         $statement->context->contextActivities->parent = [
-            $this->activities->get('traxvideo', $this->module->id, false, 'module')
-        ];
-        
-        // Add grouping activities.
-        $statement->context->contextActivities->grouping = [
-            $this->activities->get('system', 0, false),
-            $this->activities->get('course', $this->course->id, false),
-        ];
-        
-        // Add granularity level category.
-        $statement->context->contextActivities->category[] = [
-            'id' => 'http://vocab.xapi.fr/categories/inside-learning-unit',
-            'definition' => ['type' => 'http://vocab.xapi.fr/activities/granularity-level'],
+            $this->activities->get('traxvideo', $this->activity->id, false, 'module')
         ];
         
         // Modify profile category.
