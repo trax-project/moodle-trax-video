@@ -52,19 +52,17 @@ class profile extends base_profile {
 
         // Add parent activity.
         $statement->context->contextActivities->parent = [
-            $this->activities->get('traxvideo', $this->activity->id, false, 'module')
+            $this->activities->get('traxvideo', $this->activity->id, false, 'module', 'traxvideo', 'mod_traxvideo')
         ];
         
-        // Modify profile category.
+        // Modify video category.
         foreach ($statement->context->contextActivities->category as &$category) {
             if ($category->id == 'https://w3id.org/xapi/video') {
-                $category->objectType = 'Activity';
                 $category->definition = [
                     'type' => 'http://adlnet.gov/expapi/activities/profile'
                 ];
             }
         }
-
     }
 
 }
