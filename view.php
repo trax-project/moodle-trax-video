@@ -29,7 +29,7 @@ use \logstore_trax\src\controller as trax_controller;
 
 
 // Params.
-$id = required_param('id', PARAM_INT); 
+$id = required_param('id', PARAM_INT);
 
 // Objects.
 $cm = get_coursemodule_from_id('traxvideo', $id, 0, false, MUST_EXIST);
